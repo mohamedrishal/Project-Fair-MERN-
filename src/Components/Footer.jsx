@@ -7,12 +7,12 @@ function Footer() {
     <div
       style={{ width: "100%", height: "300px" }}
       className="d-flex  flex-column 
-    justify-content-center align-items-center border"
+    justify-content-center align-items-center border bg-light mt-5"
     >
       <div className="footer-div d-flex justify-content-evenly w-100 flex-wrap">
         <div className="website " style={{ width: "400px" }}>
           <h4>
-          <i class="fa-solid fa-truck-fast"></i> Project Fair
+          <i class="fa-solid fa-blog"></i> Project Fair
           </h4>
           <h6>
             Designed and built with all the love in the world by the luminr team
@@ -23,7 +23,7 @@ function Footer() {
         </div>
         <div className="links d-flex  flex-column">
           <h4>Links</h4>
-          <Link to={"/home"} style={{ textDecoration: "none" }}>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
             {" "}
             Home
           </Link>
