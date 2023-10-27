@@ -28,7 +28,7 @@ function ProjectCard() {
           <Row>
             <Col md={6}>
               <img
-                style={{ height: "200px" }}
+                style={{ height: "250px" }}
                 className="img-fluid"
                 src={projectPic}
                 alt="Project image"

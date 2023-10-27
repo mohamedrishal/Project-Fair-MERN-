@@ -7,7 +7,7 @@ function Footer() {
     <div
       style={{ width: "100%", height: "300px" }}
       className="d-flex  flex-column 
-    justify-content-center align-items-center border bg-light mt-5"
+    justify-content-center align-items-center border bg-success mt-5"
     >
       <div className="footer-div d-flex justify-content-evenly w-100 flex-wrap">
         <div className="website " style={{ width: "400px" }}>
@@ -19,20 +19,21 @@ function Footer() {
             with the help of our contributors.
           </h6>
           <h6>Code licensed luminar, docs CC BY 3.0.</h6>
-          <p>Currently v1.0.0.</p>
+          <p className="text-dark">Currently v1.0.0.</p>
         </div>
-        <div className="links d-flex  flex-column">
+        <div className="links d-flex  flex-column ">
           <h4>Links</h4>
-          <Link to={"/"} style={{ textDecoration: "none" }}>
+          <Link className="text-dark" to={"/"} style={{ textDecoration: "none" }}>
             {" "}
             Home
           </Link>
-          <Link to={"/login"} style={{ textDecoration: "none" }}>
+          <Link className="text-dark" to={"/login"} style={{ textDecoration: "none" }}>
             {" "}
             Login
           </Link>
 
           <Link
+            className="text-dark"
             to={"/register"}
             style={{ textDecoration: "none" }}
           >
@@ -40,9 +41,10 @@ function Footer() {
             Register
           </Link>
         </div>
-        <div className="guides d-flex  flex-column">
+        <div className="guides d-flex  flex-column ">
           <h4>guides</h4>
           <Link
+            className="text-dark"
             to={"https://getbootstrap.com/"}
             style={{ textDecoration: "none" }}
           >
@@ -50,6 +52,7 @@ function Footer() {
             React
           </Link>
           <Link
+          className="text-dark"
             to={"https://react-bootstrap.netlify.app/"}
             style={{ textDecoration: "none"}}
           >
@@ -58,6 +61,7 @@ function Footer() {
           </Link>
 
           <Link
+          className="text-dark"
             to={"/watch-history"}
             style={{ textDecoration: "none"}}
           >
@@ -71,13 +75,14 @@ function Footer() {
             <input
               type="text"
               className="form-control"
-              placeholder="enter your email"
+              placeholder="Enter your email"
             />
-            <button className="btn btn-primary ms-3"><i class="fa-solid fa-arrow-right"></i></button>
+            <button className="btn btn-primary ms-3 bg-dark"><i class="fa-solid fa-arrow-right"></i></button>
           </div>
           <div className="icons fs-4 d-flex justify-content-evenly mt-4">
           
           <Link
+          className="text-dark"
               to={"https://mail.google.com/"}
               style={{ textDecoration: "none" }}
             >
@@ -85,6 +90,7 @@ function Footer() {
             </Link>
 
             <Link
+            className="text-dark"
               to={"https://getbootstrap.com/"}
               style={{ textDecoration: "none" }}
             >
@@ -92,6 +98,7 @@ function Footer() {
             </Link>
 
             <Link
+            className="text-dark"
               to={"https://react-bootstrap.netlify.app/"}
               style={{ textDecoration: "none" }}
             >
@@ -99,6 +106,7 @@ function Footer() {
             </Link>
 
             <Link
+            className="text-dark"
               to={"/watch-history"}
               style={{ textDecoration: "none" }}
             >
@@ -106,6 +114,7 @@ function Footer() {
             </Link>
 
             <Link
+            className="text-dark"
               to={"/watch-history"}
               style={{ textDecoration: "none" }}
             >
@@ -114,7 +123,7 @@ function Footer() {
           </div>
         </div>
       </div>
-      <p>copyright @ 2023 Project Fair. buit with React.</p>
+      <p className="text-dark">copyright @ 2023 Project Fair. buit with React.</p>
     </div>
   );
 }
