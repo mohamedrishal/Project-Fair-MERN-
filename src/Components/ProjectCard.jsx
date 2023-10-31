@@ -13,6 +13,7 @@ function ProjectCard() {
   const handleShow = () => setShow(true);
   return (
     <>
+    
       <Card className="shadow mb-5 btn" onClick={handleShow}>
         <Card.Img variant="top" src={projectPic} />
         <Card.Body>

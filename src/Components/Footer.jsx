@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 function Footer() {
   return (
     <div
@@ -11,8 +10,8 @@ function Footer() {
     >
       <div className="footer-div d-flex justify-content-evenly w-100 flex-wrap">
         <div className="website " style={{ width: "400px" }}>
-          <h4>
-          <i class="fa-solid fa-blog"></i> Project Fair
+          <h4 className="fw-bolder">
+            <i class="fa-solid fa-blog "></i> Project Fair
           </h4>
           <h6>
             Designed and built with all the love in the world by the luminr team
@@ -23,11 +22,19 @@ function Footer() {
         </div>
         <div className="links d-flex  flex-column ">
           <h4>Links</h4>
-          <Link className="text-dark" to={"/"} style={{ textDecoration: "none" }}>
+          <Link
+            className="text-dark"
+            to={"/"}
+            style={{ textDecoration: "none" }}
+          >
             {" "}
             Home
           </Link>
-          <Link className="text-dark" to={"/login"} style={{ textDecoration: "none" }}>
+          <Link
+            className="text-dark"
+            to={"/login"}
+            style={{ textDecoration: "none" }}
+          >
             {" "}
             Login
           </Link>
@@ -52,18 +59,18 @@ function Footer() {
             React
           </Link>
           <Link
-          className="text-dark"
+            className="text-dark"
             to={"https://react-bootstrap.netlify.app/"}
-            style={{ textDecoration: "none"}}
+            style={{ textDecoration: "none" }}
           >
             {" "}
             React bootstrap
           </Link>
 
           <Link
-          className="text-dark"
+            className="text-dark"
             to={"/watch-history"}
-            style={{ textDecoration: "none"}}
+            style={{ textDecoration: "none" }}
           >
             {" "}
             Routing
@@ -77,12 +84,13 @@ function Footer() {
               className="form-control"
               placeholder="Enter your email"
             />
-            <button className="btn btn-primary ms-3 bg-dark"><i class="fa-solid fa-arrow-right"></i></button>
+            <button className="btn btn-primary ms-3 bg-dark">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
           </div>
           <div className="icons fs-4 d-flex justify-content-evenly mt-4">
-          
-          <Link
-          className="text-dark"
+            <Link
+              className="text-dark"
               to={"https://mail.google.com/"}
               style={{ textDecoration: "none" }}
             >
@@ -90,7 +98,7 @@ function Footer() {
             </Link>
 
             <Link
-            className="text-dark"
+              className="text-dark"
               to={"https://getbootstrap.com/"}
               style={{ textDecoration: "none" }}
             >
@@ -98,7 +106,7 @@ function Footer() {
             </Link>
 
             <Link
-            className="text-dark"
+              className="text-dark"
               to={"https://react-bootstrap.netlify.app/"}
               style={{ textDecoration: "none" }}
             >
@@ -106,7 +114,7 @@ function Footer() {
             </Link>
 
             <Link
-            className="text-dark"
+              className="text-dark"
               to={"/watch-history"}
               style={{ textDecoration: "none" }}
             >
@@ -114,7 +122,7 @@ function Footer() {
             </Link>
 
             <Link
-            className="text-dark"
+              className="text-dark"
               to={"/watch-history"}
               style={{ textDecoration: "none" }}
             >
@@ -123,7 +131,9 @@ function Footer() {
           </div>
         </div>
       </div>
-      <p className="text-dark">copyright @ 2023 Project Fair. buit with React.</p>
+      <p className="text-dark">
+        copyright @ 2023 Project Fair. buit with React.
+      </p>
     </div>
   );
 }

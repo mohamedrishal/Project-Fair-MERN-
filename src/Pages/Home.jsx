@@ -17,7 +17,7 @@ function Home() {
             <h1 style={{ fontSize: "60px" }} className="fw-bolder">
               <i class="fa-solid fa-blog"></i> Project Fair
             </h1>
-            <p className="text-light">
+            <p className="text-light mt-5">
               One stop Destination for all softwear Development Projects.Where
               User can add and manage their projects . As well as access all
               projects available in our Website.... What are you waiting for!!
