@@ -15,7 +15,7 @@ function MyProfile() {
           aria-controls="example-collapse-text"
           aria-expanded={open}
         >
-          <i class="fa-solid fa-check"></i>
+         <i class="fa-solid fa-chevron-down"></i>
         </Button>
       </div>
 

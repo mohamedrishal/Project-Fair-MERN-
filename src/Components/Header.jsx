@@ -15,7 +15,7 @@ function Header({logout}) {
 
        {
          logout &&
-        <button className="btn btn-dark p-2  fw-bolder">
+        <button className="btn text-dark fs-5 p-2  fw-bolder">
         Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
        </button>}
 

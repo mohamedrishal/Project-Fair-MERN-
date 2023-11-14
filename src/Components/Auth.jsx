@@ -1,10 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import lock from "../Assets/lock.png";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
+import { registerAPI } from "../Services/allAPI";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function Auth({ register }) {
+  const navigate = useNavigate();
+
   const isRegisterForm = register ? true : false;
+
+  const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const { username, email, password } = userData;
+    if (!username || !email || !password) {
+      toast.info("Please Fill the Form");
+    } else {
+      const result = await registerAPI(userData);
+      console.log(result);
+
+      if (result.status === 200) {
+        toast.success(`${result.data.username} has Registered Successfully!!`);
+        setUserData({
+          username: "",
+          email: "",
+          password: "",
+        });
+        navigate("/login");
+      } else {
+        toast.warning(result.response.data);
+        console.log(result);
+      }
+      
+    }
+  };
+
   return (
     <div
       style={{ width: "100%", height: "100vh" }}
@@ -33,32 +70,64 @@ function Auth({ register }) {
                 <Form className="text-light w-100">
                   {isRegisterForm && (
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                      <Form.Control type="text" placeholder="Username" />
+                      <Form.Control
+                        type="text"
+                        placeholder="Username"
+                        value={userData.username}
+                        onChange={(e) =>
+                          setUserData({
+                            ...userData,
+                            username: e.target.value,
+                          })
+                        }
+                      />
                     </Form.Group>
                   )}
                   <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control type="email" placeholder="Enter Your Email Id" />
+                    <Form.Control
+                      type="email"
+                      placeholder="Enter Your Email Id"
+                      value={userData.email}
+                      onChange={(e) =>
+                        setUserData({ ...userData, email: e.target.value })
+                      }
+                    />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control
                       type="password"
                       placeholder="Enter a Password"
+                      value={userData.password}
+                      onChange={(e) =>
+                        setUserData({ ...userData, password: e.target.value })
+                      }
                     />
                   </Form.Group>
                   {isRegisterForm ? (
                     <div>
-                      <button className="btn btn-light mb-2">Register</button>
+                      <button
+                        onClick={handleRegister}
+                        className="btn btn-light mb-2"
+                      >
+                        Register
+                      </button>
                       <p className="mt-3">
                         Already Have Account? Click here to
-                        <Link to={"/login"} className="text-warning"> Login</Link>
+                        <Link to={"/login"} className="text-warning">
+                          {" "}
+                          Login
+                        </Link>
                       </p>
                     </div>
                   ) : (
                     <div>
                       <button className="btn btn-light mb-2">Login</button>
                       <p className="mt-3">
-                       New User? Click here to
-                        <Link to={"/register"} className="text-warning"> Register</Link>
+                        New User? Click here to
+                        <Link to={"/register"} className="text-warning">
+                          {" "}
+                          Register
+                        </Link>
                       </p>
                     </div>
                   )}
@@ -68,6 +137,7 @@ function Auth({ register }) {
           </div>
         </div>
       </div>
+      <ToastContainer position="top-center" autoClose={2000} />
     </div>
   );
 }

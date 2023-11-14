@@ -2,5 +2,6 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  overflow-x: hidden;
-  font-family: 'Playpen Sans', cursive;}
+  overflow: hidden;
+  font-family: 'Playpen Sans', cursive;
+}
