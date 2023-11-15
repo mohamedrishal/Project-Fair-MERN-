@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import img from "../Assets/projectfair.png";
 import { Link } from "react-router-dom";
 import ProjectCard from "../Components/ProjectCard";
 
 function Home() {
+
+  const [loggedin,setLoggedin] = useState(false)
+
+  useEffect(()=>{
+    if(sessionStorage.getItem("token")){
+      setLoggedin(true)
+    }else{
+      setLoggedin(false)
+    }
+  },[])
+
   return (
     <>
       {/* Landing Section */}
@@ -22,10 +33,14 @@ function Home() {
               User can add and manage their projects . As well as access all
               projects available in our Website.... What are you waiting for!!
             </p>
+           { loggedin ? <Link to={'/dashboard'} className="btn btn-warning p-3 ">
+            Manage Your Projects{" "}
+              <i class="fa-solid fa-right-long fa-beat ms-2"></i>
+            </Link> :
             <Link to={'/login'} className="btn btn-warning p-3 ">
               Start to Explore{" "}
               <i class="fa-solid fa-right-long fa-beat ms-2"></i>
-            </Link>
+            </Link>}
           </Col>
           <Col sm={12} md={6}>
             <img

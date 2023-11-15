@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import lock from "../Assets/lock.png";
 import Form from "react-bootstrap/Form";
-import { registerAPI } from "../Services/allAPI";
+import { loginAPI, registerAPI } from "../Services/allAPI";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -41,6 +41,35 @@ function Auth({ register }) {
       
     }
   };
+
+
+  // login
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const { email, password } = userData;
+    if ( !email || !password) {
+      toast.info("Please Fill the Form");
+    } else {
+      const result = await loginAPI(userData);
+      console.log(result);
+
+      if (result.status === 200) {
+        // toast.success(`${result.data.username} has Registered Successfully!!`);
+        sessionStorage.setItem("exstingUser",JSON.stringify(result.data.existingUser))
+        sessionStorage.setItem("token",result.data.token)
+        setUserData({
+          email: "",
+          password: "",
+        });
+        navigate("/");
+      } else {
+        toast.warning(result.response.data);
+        console.log(result);
+      }
+      
+    }
+  };
+
 
   return (
     <div
@@ -121,7 +150,7 @@ function Auth({ register }) {
                     </div>
                   ) : (
                     <div>
-                      <button className="btn btn-light mb-2">Login</button>
+                      <button onClick={handleLogin} className="btn btn-light mb-2">Login</button>
                       <p className="mt-3">
                         New User? Click here to
                         <Link to={"/register"} className="text-warning">
