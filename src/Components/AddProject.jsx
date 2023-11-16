@@ -66,7 +66,7 @@ function AddProject() {
     ) {
       toast.info("Please Fill the Form");
     } else {
-      const reqBody = new FormData();                              
+      const reqBody = new FormData();
 
       reqBody.append("title", title);
       reqBody.append("languages", languages);
@@ -75,15 +75,19 @@ function AddProject() {
       reqBody.append("website", website);
       reqBody.append("projectImage", projectImage);
 
-
-      // if (token) {
-      //   reqHeader = {
-      //     "Content-type": "multipart/form-data",
-      //     Authorization: `Bearer ${token}`,
-      //   };
-      // }
-      const result = await addProjectAPI(reqBody);
-      if (result.status === 200) console.log(result);
+      if (token) {
+        const reqHeader = {
+          "Content-type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        };
+        const result = await addProjectAPI(reqBody, reqHeader);
+        if (result.status === 200) {
+          console.log(result.data);
+        } else {
+          console.log(result);
+          console.log(result.response.data);
+        }
+      }
     }
   };
 
