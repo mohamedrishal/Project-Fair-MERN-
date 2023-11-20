@@ -32,6 +32,7 @@ function AddProject() {
     });
     setPreview("");
   };
+
   const handleShow = () => setShow(true);
 
   console.log(projectDetails);
@@ -76,17 +77,22 @@ function AddProject() {
       reqBody.append("projectImage", projectImage);
 
       if (token) {
+
         const reqHeader = {
           "Content-type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         };
+        
         const result = await addProjectAPI(reqBody, reqHeader);
         if (result.status === 200) {
           console.log(result.data);
+          handleClose()
+          alert("Project Added")
         } else {
           console.log(result);
           console.log(result.response.data);
         }
+        
       }
     }
   };
