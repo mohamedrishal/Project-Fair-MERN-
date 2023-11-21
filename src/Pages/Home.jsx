@@ -3,18 +3,32 @@ import { Col, Row } from "react-bootstrap";
 import img from "../Assets/projectfair.png";
 import { Link } from "react-router-dom";
 import ProjectCard from "../Components/ProjectCard";
+import {homeProjectAPI } from "../Services/allAPI";
 
 function Home() {
+  const [loggedin, setLoggedin] = useState(false);
+  const [homeProjects, setHomeProjects] = useState([]);
 
-  const [loggedin,setLoggedin] = useState(false)
-
-  useEffect(()=>{
-    if(sessionStorage.getItem("token")){
-      setLoggedin(true)
-    }else{
-      setLoggedin(false)
+  const getHomeProjects = async () => {
+    const result = await homeProjectAPI();
+    if (result.status === 200) {
+      setHomeProjects(result.data);
+    } else {
+      console.log(result);
+      console.log(result.response.data);
     }
-  },[])
+  };
+
+  useEffect(() => {
+    if (sessionStorage.getItem("token")) {
+      setLoggedin(true);
+    } else {
+      setLoggedin(false);
+    }
+
+    // gethomeProjects
+    getHomeProjects();
+  }, []);
 
   return (
     <>
@@ -33,14 +47,17 @@ function Home() {
               User can add and manage their projects . As well as access all
               projects available in our Website.... What are you waiting for!!
             </p>
-           { loggedin ? <Link to={'/dashboard'} className="btn btn-warning p-3 ">
-            Manage Your Projects{" "}
-              <i class="fa-solid fa-right-long fa-beat ms-2"></i>
-            </Link> :
-            <Link to={'/login'} className="btn btn-warning p-3 ">
-              Start to Explore{" "}
-              <i class="fa-solid fa-right-long fa-beat ms-2"></i>
-            </Link>}
+            {loggedin ? (
+              <Link to={"/dashboard"} className="btn btn-warning p-3 ">
+                Manage Your Projects{" "}
+                <i class="fa-solid fa-right-long fa-beat ms-2"></i>
+              </Link>
+            ) : (
+              <Link to={"/login"} className="btn btn-warning p-3 ">
+                Start to Explore{" "}
+                <i class="fa-solid fa-right-long fa-beat ms-2"></i>
+              </Link>
+            )}
           </Col>
           <Col sm={12} md={6}>
             <img
@@ -55,11 +72,15 @@ function Home() {
       {/* all Projects */}
       <div className="all-projects mt-5">
         <h1 className="text-center mb-5">Explore Our Projects</h1>
-        <marquee scrollAmount={19}>
+        <marquee scrollAmount={15}>
           <Row>
-            <Col sm={12} md={4}>
-              <ProjectCard />
-            </Col>{" "}
+            {homeProjects?.length > 0
+              ? homeProjects.map((project) => (
+                  <Col sm={12} md={4}>
+                    <ProjectCard project={project} />
+                  </Col>
+                ))
+              : null}
           </Row>
         </marquee>
         <div className="text-center mt-5">
