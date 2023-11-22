@@ -7,6 +7,8 @@ import { allProjectcsAPI } from "../Services/allAPI";
 function Projects() {
   const [allProjects, setAllProjects] = useState([]);
 
+  const [searchKey,setSearchKey] =  useState("")
+
   const getAllProjects = async () => {
     if (sessionStorage.getItem("token")) {
       const token = sessionStorage.getItem("token");
@@ -14,7 +16,7 @@ function Projects() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       };
-      const result = await allProjectcsAPI(reqHeader);
+      const result = await allProjectcsAPI(searchKey,reqHeader);
       if (result.status === 200) {
         setAllProjects(result.data);
         console.log(allProjects);
@@ -27,7 +29,7 @@ function Projects() {
 
   useEffect(() => {
     getAllProjects();
-  }, []);
+  },[searchKey]);
 
   return (
     <div>
@@ -39,6 +41,8 @@ function Projects() {
             <input
               type="text"
               className="form-control"
+              value={searchKey}
+              onChange={e=>setSearchKey(e.target.value)}
               placeholder="Search Projects by Technology Used"
             />
             <i
@@ -55,7 +59,7 @@ function Projects() {
                 <ProjectCard project={project} />
               </Col>
             ))
-          : null}
+          : !searchKey && <p className="fw-bolder text-danger text-center fs-1 mt-2 ">Please Login!!</p>}
       </Row>
     </div>
   );
