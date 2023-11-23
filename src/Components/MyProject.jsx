@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext,useEffect, useState } from "react";
 import AddProject from "./AddProject";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { userProjectAPI } from "../Services/allAPI";
+import { addProjectResponseContext } from "../Context/ContextShare";
+import EditProject from "./EditProject";
 
 function MyProject() {
+
+  const {addProjectResponse,setAddProjectResponse} = useContext(addProjectResponseContext)
+
   const [userProjects, setUserProjects] = useState([]);
 
   const getUserProjects = async () => {
@@ -26,7 +31,8 @@ function MyProject() {
 
   useEffect(() => {
     getUserProjects();
-  }, []);
+  }, [addProjectResponse]);
+  console.log(addProjectResponse);
 
   return (
     <>
@@ -37,15 +43,14 @@ function MyProject() {
             <AddProject />
           </div>
         </div>
+
         <div className="mt-4">
           {userProjects?.length > 0 ? (
             userProjects.map((project) => (
               <div className="border d-flex align-items-center rounded p-3 mt-3">
                 <h5>{project.title}</h5>
                 <div className="icon ms-auto">
-                  <button className="btn btn-light border ms-2">
-                    <i class="fa-solid fa-pen-to-square fa-1x"></i>
-                  </button>
+                  <EditProject project={project} />
                   <a href={`${project.github}`} target="_blank" className="btn btn-light border ms-2">
                     <i class="fa-brands fa-github fa-1x"></i>
                   </a>

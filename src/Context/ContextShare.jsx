@@ -5,11 +5,11 @@ function ContextShare({ children }) {
   const [addProjectResponse, setAddProjectResponse] = useState({});
   return (
    <>
-        <addProjectResponseContext.provider
+        <addProjectResponseContext.Provider
           value={{ addProjectResponse, setAddProjectResponse }}
         >
           {children}
-        </addProjectResponseContext.provider>
+        </addProjectResponseContext.Provider>
    </>
   );
 }
