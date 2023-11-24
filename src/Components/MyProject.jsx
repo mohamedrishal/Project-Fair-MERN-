@@ -49,7 +49,7 @@ function MyProject() {
             userProjects.map((project) => (
               <div className="border d-flex align-items-center rounded p-3 mt-3">
                 <h5>{project.title}</h5>
-                <div className="icon ms-auto">
+                <div className="icon  ms-auto d-flex justify-content-center align-items-center">
                   <EditProject project={project} />
                   <a href={`${project.github}`} target="_blank" className="btn btn-light border ms-2">
                     <i class="fa-brands fa-github fa-1x"></i>

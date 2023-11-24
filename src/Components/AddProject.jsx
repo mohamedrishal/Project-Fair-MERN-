@@ -71,6 +71,7 @@ function AddProject() {
     ) {
       toast.info("Please Fill the Form");
     } else {
+      
       const reqBody = new FormData();
 
       reqBody.append("title", title);
