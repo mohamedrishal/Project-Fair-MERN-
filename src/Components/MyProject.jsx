@@ -2,12 +2,12 @@ import React, { useContext,useEffect, useState } from "react";
 import AddProject from "./AddProject";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { userProjectAPI } from "../Services/allAPI";
-import { addProjectResponseContext } from "../Context/ContextShare";
+import { deleteProjectAPI, userProjectAPI } from "../Services/allAPI";
+import { addProjectResponseContext,EditProjectResponseContext } from "../Context/ContextShare";
 import EditProject from "./EditProject";
 
 function MyProject() {
-
+  const {editProjectResponse,setEditProjectResponse} = useContext(EditProjectResponseContext)
   const {addProjectResponse,setAddProjectResponse} = useContext(addProjectResponseContext)
 
   const [userProjects, setUserProjects] = useState([]);
@@ -31,8 +31,24 @@ function MyProject() {
 
   useEffect(() => {
     getUserProjects();
-  }, [addProjectResponse]);
-  console.log(addProjectResponse);
+  }, [addProjectResponse,editProjectResponse]);
+  // console.log(addProjectResponse);
+
+  const handleDelete = async (id)=>{
+    const token = sessionStorage.getItem("token")
+    const reqHeader = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`,
+    };
+
+    const result = await deleteProjectAPI(id,reqHeader)
+    if(result===200){
+      // page Reloaded 
+      getUserProjects()
+    }else{
+      toast.error(result.response.data)
+    }
+  }
 
   return (
     <>
@@ -54,7 +70,7 @@ function MyProject() {
                   <a href={`${project.github}`} target="_blank" className="btn btn-light border ms-2">
                     <i class="fa-brands fa-github fa-1x"></i>
                   </a>
-                  <button className="btn btn-light border ms-2">
+                  <button onClick={()=>handleDelete(project._id)} className="btn btn-light border ms-2">
                     <i class="fa-solid fa-trash fa-1x"></i>
                   </button>
                 </div>

@@ -39,7 +39,7 @@ function AddProject() {
 
   const handleShow = () => setShow(true);
 
-  console.log(projectDetails);
+  // console.log(projectDetails);
 
   useEffect(() => {
     if (projectDetails.projectImage) {

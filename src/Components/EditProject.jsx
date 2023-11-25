@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BASE_URL } from "../Services/baseURL";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { editProjectAPI } from "../Services/allAPI";
+import { EditProjectResponseContext } from "../Context/ContextShare";
 
 function EditProject({ project }) {
   const [show, setShow] = useState(false);
+
+  const {editProjectResponse,setEditProjectResponse} = useContext(EditProjectResponseContext)
 
   const handleShow = () => setShow(true);
   const handleClose = () => {
@@ -59,16 +62,19 @@ function EditProject({ project }) {
       preview?reqBody.append("projectImage", projectImage):reqBody.append("projectImage",project.projectImage)
 
       const token = sessionStorage.getItem("token")
+      
       if(preview){
         const reqHeader = {
           "Content-type": "multipart/form-data",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`
         };
+        console.log(id);
         // api call 
         const result = await editProjectAPI(id,reqBody,reqHeader)
         if(result.status===200){
           handleClose()
           // pass response to my projects
+          setEditProjectResponse(result.data)
         }else{
           console.log(result);
           toast.error(result.response.data)
@@ -76,18 +82,19 @@ function EditProject({ project }) {
       }else{
         const reqHeader = {
           "Content-type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`
         };
         // api call 
         const result = await editProjectAPI(id,reqBody,reqHeader)
         if(result.status===200){
           handleClose()
           // pass response to my projects
+          setEditProjectResponse(result.data)
+
         }else{
           console.log(result);
           toast.error(result.response.data)
         }
-
       }
     }
 
