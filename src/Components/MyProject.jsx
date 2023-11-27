@@ -7,11 +7,13 @@ import { addProjectResponseContext,EditProjectResponseContext } from "../Context
 import EditProject from "./EditProject";
 
 function MyProject() {
+
   const {editProjectResponse,setEditProjectResponse} = useContext(EditProjectResponseContext)
   const {addProjectResponse,setAddProjectResponse} = useContext(addProjectResponseContext)
 
   const [userProjects, setUserProjects] = useState([]);
 
+  
   const getUserProjects = async () => {
     if (sessionStorage.getItem("token")) {
       const token = sessionStorage.getItem("token");
@@ -42,7 +44,7 @@ function MyProject() {
     };
 
     const result = await deleteProjectAPI(id,reqHeader)
-    if(result===200){
+    if(result.status===200){
       // page Reloaded 
       getUserProjects()
     }else{

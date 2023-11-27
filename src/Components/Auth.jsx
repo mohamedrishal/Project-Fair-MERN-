@@ -5,8 +5,14 @@ import Form from "react-bootstrap/Form";
 import { loginAPI, registerAPI } from "../Services/allAPI";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { tokenAuthorisationContext } from "../Context/TokenAuth";
+import { useContext } from "react";
 
 function Auth({ register }) {
+
+  const {isAuthorized, setIsAuthorized} = useContext(tokenAuthorisationContext)
+
+
   const navigate = useNavigate();
 
   const isRegisterForm = register ? true : false;
@@ -57,6 +63,7 @@ function Auth({ register }) {
         // toast.success(`${result.data.username} has Registered Successfully!!`);
         sessionStorage.setItem("exstingUser",JSON.stringify(result.data.existingUser))
         sessionStorage.setItem("token",result.data.token)
+        setIsAuthorized(true)
         setUserData({
           email: "",
           password: "",
