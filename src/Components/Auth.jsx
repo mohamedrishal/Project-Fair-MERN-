@@ -91,9 +91,9 @@ function Auth({ register }) {
         <div className="card shadow p-5 bg-success mt-2">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <img src={lock} alt="" className="rounded-start width-50" />
+              <img src={lock} alt="" className="img-fluid rounded-start width-50" />
             </div>
-            <div className="col-lg-6 p-5">
+            <div className="col-lg-6 p-2">
               <div className="d-flex align-itmes-center flex-column">
                 <h1 className="fw-bolder text-dark mt-2">
                   <i class="fa-solid fa-blog"></i> Project Fair
