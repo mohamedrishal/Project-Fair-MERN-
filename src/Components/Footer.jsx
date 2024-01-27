@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 function Footer() {
   return (
     <div
-      style={{ width: "100%", height: "300px" }}
+      // style={{ width: "100%", height: "300px" }}
       className="d-flex  flex-column 
-    justify-content-center align-items-center border bg-success mt-5"
+    justify-content-center align-items-center border bg-success mt-5 pt-5   "
     >
-      <div className="footer-div d-flex justify-content-evenly w-100 flex-wrap">
+      <div className="footer-div d-flex justify-content-evenly w-100 flex-wrap container">
         <div className="website " style={{ width: "400px" }}>
           <h4 className="fw-bolder">
             <i class="fa-solid fa-blog "></i> Project Fair

@@ -35,14 +35,14 @@ function Home() {
       {/* Landing Section */}
       <div
         style={{ width: "100%", height: "100vh" }}
-        className="container-fluid rounded bg-success"
+        className="container-fluid rounded bg-success d-flex align-items-center justify-content-center"
       >
-        <Row className="align-items-center p-5 ms-5">
-          <Col sm={12} md={6}>
-            <h1 style={{ fontSize: "60px" }} className="fw-bolder">
+        <Row className="align-items-center p-5 ">
+          <Col sm={12} md={6} className="container">
+            <h1  className="fw-bolder">
               <i class="fa-solid fa-blog"></i> Project Fair
             </h1>
-            <p className="text-light mt-5">
+            <p className="text-light mt-4">
               One stop Destination for all softwear Development Projects.Where
               User can add and manage their projects . As well as access all
               projects available in our Website.... What are you waiting for!!
@@ -59,10 +59,10 @@ function Home() {
               </Link>
             )}
           </Col>
-          <Col sm={12} md={6}>
+          <Col sm={12} md={6} className="d-flex justify-content-center align-items-center">
             <img
-              style={{ marginTop: "100px" }}
-              className="w-50 ms-5"
+              // style={{ marginTop: "100px" }}
+              className="w-50 img-fluid"
               src={img}
               alt=""
             />
