@@ -7,6 +7,7 @@ import {homeProjectAPI } from "../Services/allAPI";
 
 function Home() {
   const [loggedin, setLoggedin] = useState(false);
+
   const [homeProjects, setHomeProjects] = useState([]);
 
   const getHomeProjects = async () => {
@@ -20,6 +21,7 @@ function Home() {
   };
 
   useEffect(() => {
+
     if (sessionStorage.getItem("token")) {
       setLoggedin(true);
     } else {
